@@ -27,7 +27,7 @@ User.init(
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
+      unique: true, // I recommend putting a `msg` here like you did with `username`.
     },
     image: {
       type: DataTypes.STRING,

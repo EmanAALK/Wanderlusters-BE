@@ -13,4 +13,5 @@ const db = process.env.DATABASE_URL
       host: "localhost",
       logging: false,
     });
+
 module.exports = db;

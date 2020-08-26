@@ -6,6 +6,7 @@ class Trip extends Model {}
 
 Trip.init(
   {
+    // call this just `name`, not `tripName`. This is already the Trip model, it won't be any other kind of name.
     tripName: {
       type: DataTypes.STRING,
       allowNull: false,
