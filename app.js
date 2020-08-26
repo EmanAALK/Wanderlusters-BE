@@ -4,14 +4,14 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const passport = require("passport");
 
-//Strategies
-// const { localStrategy, jwtStrategy } = require("./middleware/passport");
+// Strategies
+const { localStrategy, jwtStrategy } = require("./middleware/passport");
 
 //DB
 const db = require("./db");
 
 //Routes
-
+const userRoutes = require("./routes/users");
 //Create Express App Instance
 const app = express();
 
@@ -19,11 +19,12 @@ app.use(cors());
 app.use(bodyParser.json());
 
 //Passport
-// app.use(passport.initialize());
-// passport.use(localStrategy);
-// passport.use(jwtStrategy);
+app.use(passport.initialize());
+passport.use(localStrategy);
+passport.use(jwtStrategy);
 
 //Routers
+app.use(userRoutes);
 
 //Not Found Paths
 app.use((req, res, next) => {
@@ -40,7 +41,7 @@ app.use((err, req, res, next) => {
 
 const run = async () => {
   try {
-    await db.sync({});
+    await db.sync({ alter: true });
     /*force: true*/
     /*alter: true : we do it only once*/
   } catch (error) {
