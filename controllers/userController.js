@@ -21,7 +21,7 @@ exports.signup = async (req, res, next) => {
       firstName: newUser.firstName,
       lastName: newUser.lastName,
       //   image: newUser.image,
-      tripSlug: null, // a user doesn't have a single trip slug. also, trips dont have slugs. so remove this field.
+
       exp: Date.now() + JWT_EXPIRATION_MS,
     };
 
@@ -39,7 +39,7 @@ exports.signin = async (req, res, next) => {
   const payload = {
     id: user.id,
     username: user.username,
-    tripSlug: trip ? trip.slug : null, // no need for a trip slug at all in this app
+
     exp: Date.now() + JWT_EXPIRATION_MS,
   };
   const token = jwt.sign(JSON.stringify(payload), JWT_SECRET);
