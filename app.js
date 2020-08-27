@@ -7,33 +7,34 @@ const passport = require("passport");
 // Strategies
 const { localStrategy, jwtStrategy } = require("./middleware/passport");
 
-//DB
+// DB
 const db = require("./db");
 
-//Routes
+// Routes
 const userRoutes = require("./routes/users");
-//Create Express App Instance
+
+// Create Express App Instance
 const app = express();
 
 app.use(cors());
 app.use(bodyParser.json());
 
-//Passport
+// Passport
 app.use(passport.initialize());
 passport.use(localStrategy);
 passport.use(jwtStrategy);
 
-//Routers
+// Routers
 app.use(userRoutes);
 
-//Not Found Paths
+// Not Found Paths
 app.use((req, res, next) => {
   const error = new Error("Path Not Found");
   error.status = 404;
   next(error);
 });
 
-//Error Handling Middleware
+// Error Handling Middleware
 app.use((err, req, res, next) => {
   res.status(err.status || 500);
   res.json(err.message || "Internal Server Error");

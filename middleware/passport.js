@@ -22,6 +22,10 @@ exports.localStrategy = new LocalStrategy(async (username, password, done) => {
       : false;
     return passwordsMatch ? done(null, user) : done(null, false);
   } catch (error) {
+    // i believe you have to return done(error)
+    // but im doubtful
+    // test it by logging in with a username that doesn't exist.
+    // let me know on discord how the test goes.
     done(error);
   }
 });
@@ -37,8 +41,11 @@ exports.jwtStrategy = new JWTStrategy(
     }
     try {
       const user = await User.findByPk(jwtPayload.id);
+      // return done(...)
       done(null, user); // if there is no user, this will throw a 401
     } catch (error) {
+      // if the test i mentioned above tells you you need to return
+      // then add return here as well
       done(error);
     }
   }
