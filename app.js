@@ -13,7 +13,7 @@ const db = require("./db");
 // Routes
 const userRoutes = require("./routes/users");
 const profileRoutes = require("./routes/profiles");
-
+const tripsRoutes = require("./routes/trips");
 // Create Express App Instance
 const app = express();
 
@@ -26,8 +26,9 @@ passport.use(localStrategy);
 passport.use(jwtStrategy);
 
 // Routers
-app.use(userRoutes);
 app.use("/profiles", profileRoutes);
+app.use("/trips", tripsRoutes);
+app.use(userRoutes);
 
 // Not Found Paths
 app.use((req, res, next) => {
