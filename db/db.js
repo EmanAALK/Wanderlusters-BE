@@ -7,7 +7,7 @@ const db = process.env.DATABASE_URL
     })
   : new Sequelize({
       username: "postgres",
-      password: "ilovecoded", // coded loves you too, but don't forget to remove the pw and db name before pushing.
+      password: "", // coded loves you too, but don't forget to remove the pw and db name before pushing.
       database: "wonderlusters_db",
       dialect: "postgres",
       host: "localhost",
