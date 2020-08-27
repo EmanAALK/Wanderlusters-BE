@@ -5,7 +5,7 @@ const {
   profileCreate,
   profileList,
   profileUpdate,
-  //   tripCreate,
+  tripCreate,
 } = require("../controllers/profileController");
 
 const upload = require("../middleWare/multer");
@@ -44,11 +44,11 @@ router.put(
 
 // Trip Creation Route
 
-// router.post(
-//   "/:profileId/trips",
-//   passport.authenticate("jwt", { session: false }),
-//   upload.single("image"),
-//   tripCreate
-// );
+router.post(
+  "/:profileId/trips",
+  passport.authenticate("jwt", { session: false }),
+  upload.single("image"),
+  tripCreate
+);
 
 module.exports = router;
