@@ -26,7 +26,7 @@ User.init(
     },
     email: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: true, // allowNull is by default true, no need to add this line
       unique: true,
     },
     image: {
