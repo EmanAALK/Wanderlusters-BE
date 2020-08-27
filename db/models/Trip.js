@@ -1,6 +1,5 @@
 const { DataTypes, Model } = require("sequelize");
 const db = require("../db");
-const SequalizeSlugify = require("sequelize-slugify");
 
 class Trip extends Model {}
 
@@ -11,7 +10,7 @@ Trip.init(
       allowNull: false,
     },
     date: {
-      type: DataTypes.DATE,
+      type: DataTypes.STRING,
       allowNull: false,
     },
 
@@ -22,11 +21,6 @@ Trip.init(
     image: {
       type: DataTypes.STRING,
     },
-
-    slug: {
-      type: DataTypes.STRING,
-      unique: true,
-    },
   },
 
   {
@@ -34,5 +28,4 @@ Trip.init(
   }
 );
 
-SequalizeSlugify.slugifyModel(Trip, { source: ["tripName"] });
 module.exports = Trip;
