@@ -12,7 +12,7 @@ Profile.init(
       type: DataTypes.STRING,
     },
   },
-
+  // REVIEW: Remove extra spaces
   {
     sequelize: db,
   }

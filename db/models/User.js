@@ -17,6 +17,7 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    // REVIEW: Remove extra spaces
 
     firstName: {
       type: DataTypes.STRING,
