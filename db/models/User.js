@@ -21,16 +21,15 @@ User.init(
     firstName: {
       type: DataTypes.STRING,
     },
+
     lastName: {
       type: DataTypes.STRING,
     },
+
     email: {
       type: DataTypes.STRING,
       allowNull: true, // allowNull is by default true, no need to add this line
       unique: true,
-    },
-    image: {
-      type: DataTypes.STRING,
     },
   },
   {
