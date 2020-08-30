@@ -4,7 +4,7 @@ const User = require("./User");
 
 // User-Profile Relation
 User.hasOne(Profile, { as: "profile", foreignKey: "userId" });
-Profile.belongsTo(User, { as: "user", foreignKey: "userId" });
+Profile.belongsTo(User, { as: "user" });
 
 // User-Trip Relation
 User.hasMany(Trip, { as: "trips", foreignKey: "userId" });
