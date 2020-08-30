@@ -9,6 +9,7 @@ const { localStrategy, jwtStrategy } = require("./middleware/passport");
 
 // DB
 const db = require("./db");
+// Add a space between Routes a express instance
 
 // Routes
 const userRoutes = require("./routes/users");

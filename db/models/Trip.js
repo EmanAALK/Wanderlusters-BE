@@ -10,10 +10,11 @@ Trip.init(
       allowNull: false,
     },
     date: {
+      // REVIEW: I believe there's a DATE type. Google it
       type: DataTypes.STRING,
       allowNull: false,
     },
-
+    // REVIEW: No need for the extra spaces between fields
     description: {
       type: DataTypes.STRING,
     },
