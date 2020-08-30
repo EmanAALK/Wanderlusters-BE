@@ -16,11 +16,6 @@ exports.profileList = async (req, res, next) => {
       attributes: { exclude: ["createdAt", "updatedAt"] },
       include: [
         {
-          model: Trip,
-          as: "trips",
-          attributes: ["id"],
-        },
-        {
           model: User,
           as: "user",
           attributes: ["username"],
