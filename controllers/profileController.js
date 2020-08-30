@@ -10,30 +10,6 @@ exports.fetchProfiles = async (profileId, next) => {
   }
 };
 
-exports.profileCreate = async (req, res, next) => {
-  try {
-    const foundProfile = await Profile.findOne({
-      where: { userId: req.user.id },
-    });
-    if (foundProfile) {
-      const err = new Error("You already have Profile");
-      err.status = 403;
-      next(err);
-    } else {
-      if (req.file) {
-        req.body.image = `${process.env.PORT ? "https" : "http"}://${req.get(
-          "host"
-        )}/media/${req.file.filename}`;
-      }
-      req.body.userId = req.user.id;
-      const newProfile = await Profile.create(req.body);
-      res.status(201).json(newProfile);
-    }
-  } catch (error) {
-    next(error);
-  }
-};
-
 exports.profileList = async (req, res, next) => {
   try {
     const profile = await Profile.findAll({

@@ -2,7 +2,6 @@ const express = require("express");
 
 const {
   fetchProfiles,
-  profileCreate,
   profileList,
   profileUpdate,
   tripCreate,
@@ -27,13 +26,6 @@ router.param("profileId", async (req, res, next, profileId) => {
 });
 
 router.get("/", profileList);
-
-router.post(
-  "/",
-  passport.authenticate("jwt", { session: false }),
-  upload.single("image"),
-  profileCreate
-);
 
 router.put(
   "/:profileId",

@@ -5,10 +5,6 @@ class Profile extends Model {}
 
 Profile.init(
   {
-    nickName: {
-      type: DataTypes.STRING,
-      unique: true,
-    },
     bio: {
       type: DataTypes.STRING,
     },
