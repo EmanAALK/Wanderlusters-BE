@@ -24,8 +24,9 @@ exports.signup = async (req, res, next) => {
 
       exp: Date.now() + JWT_EXPIRATION_MS,
     };
+    req.body.userId = newUser.id;
     const newProfile = await Profile.create(req.body);
-
+    console.log("userProfile", newProfile);
     const token = jwt.sign(JSON.stringify(payload), JWT_SECRET);
     res.status(201).json({ token });
   } catch (error) {
