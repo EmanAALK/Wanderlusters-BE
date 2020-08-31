@@ -1,9 +1,9 @@
-const { Trip, Profile } = require("../db/models");
+const { Trip, User } = require("../db/models");
 
 exports.fetchTrip = async (tripId, next) => {
   try {
     const trip = await Trip.findByPk(tripId, {
-      include: { model: Profile, as: "profile", attributes: ["userId"] },
+      include: { model: User, as: "user", attributes: ["userId"] },
     });
     return trip;
   } catch (error) {
@@ -14,11 +14,11 @@ exports.fetchTrip = async (tripId, next) => {
 exports.tripList = async (req, res, next) => {
   try {
     const _trips = await Trip.findAll({
-      attributes: { exclude: ["profileId", "createdAt", "updatedAt"] },
+      attributes: { exclude: ["createdAt", "updatedAt"] },
       include: {
-        model: Profile,
-        as: "profile",
-        attributes: ["nickName"],
+        model: User,
+        as: "user",
+        attributes: ["username"],
       },
     });
     res.json(_trips);
