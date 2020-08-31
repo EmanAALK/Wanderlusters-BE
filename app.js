@@ -14,6 +14,7 @@ const db = require("./db");
 const userRoutes = require("./routes/users");
 const profileRoutes = require("./routes/profiles");
 const tripsRoutes = require("./routes/trips");
+
 // Create Express App Instance
 const app = express();
 

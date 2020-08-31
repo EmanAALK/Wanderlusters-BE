@@ -1,5 +1,4 @@
 const { Profile, User, Trip } = require("../db/models");
-// const slugify = require("slugify"); - Needs to have a Slug for Profiles
 
 exports.fetchProfiles = async (profileId, next) => {
   try {
@@ -47,8 +46,6 @@ exports.profileUpdate = async (req, res, next) => {
     next(error);
   }
 };
-
-// Trip Creation Function (Cookie Betrays CookieShop)
 
 exports.tripCreate = async (req, res, next) => {
   try {
