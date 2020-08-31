@@ -20,13 +20,10 @@ exports.signup = async (req, res, next) => {
       email: newUser.email,
       firstName: newUser.firstName,
       lastName: newUser.lastName,
-      //   image: newUser.image,
-
       exp: Date.now() + JWT_EXPIRATION_MS,
     };
     req.body.userId = newUser.id;
     const newProfile = await Profile.create(req.body);
-    console.log("userProfile", newProfile);
     const token = jwt.sign(JSON.stringify(payload), JWT_SECRET);
     res.status(201).json({ token });
   } catch (error) {
@@ -47,5 +44,3 @@ exports.signin = async (req, res, next) => {
   const token = jwt.sign(JSON.stringify(payload), JWT_SECRET);
   res.json({ token });
 };
-
-// we used to have a slug before because we used it for the URL, we don't use URLs in mobile apps.

@@ -10,14 +10,12 @@ Trip.init(
       allowNull: false,
     },
     date: {
-      type: DataTypes.STRING,
+      type: DataTypes.DATEONLY,
       allowNull: false,
     },
-
     description: {
       type: DataTypes.STRING,
     },
-
     image: {
       type: DataTypes.STRING,
     },
