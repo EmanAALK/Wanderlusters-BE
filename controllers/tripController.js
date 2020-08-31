@@ -27,39 +27,38 @@ exports.tripList = async (req, res, next) => {
   }
 };
 
-// exports.tripUpdate = async (req, res, next) => {
-//   try {
-//     if (req.user && req.user.id === req.trip.Profile.userId) {
+exports.tripUpdate = async (req, res, next) => {
+  try {
+    if (req.user && req.user.id === req.trip.profile.userId) {
+      if (req.file) {
+        req.body.image = `${req.protocol}}://${req.get("host")}/media/${
+          req.file.filename
+        }`;
+      }
 
-//       if (req.file) {
-//         req.body.image = `${req.protocol}}://${req.get("host")}/media/${
-//           req.file.filename
-//         }`;
-//       }
+      await req.trip.update(req.body);
+      res.status(204).end();
+    } else {
+      const err = new Error("Unauthorized");
+      err.status = 401;
+      next(err);
+    }
+  } catch (error) {
+    next(error);
+  }
+};
 
-//       await req.trip.update(req.body);
-//       res.status(204).end();
-//     } else {
-//       const err = new Error("Unauthorized");
-//       err.status = 401;
-//       next(err);
-//     }
-//   } catch (error) {
-//     next(error);
-//   }
-// };
-
-// exports.tripDelete = async (req, res, next) => {
-//   try {
-//     if (req.user.id === req.trip.profile.userId) {
-//       await req.trip.destroy();
-//       res.status(204).end();
-//     } else {
-//       const err = new Error("Unauthorized");
-//       err.status = 401;
-//       next(err);
-//     }
-//   } catch (error) {
-//     next(error);
-//   }
-// };
+exports.tripDelete = async (req, res, next) => {
+  try {
+    if (req.user.id === req.trip.profile.userId) {
+      await req.trip.destroy();
+      res.status(204).end();
+    } else {
+      const err = new Error("Unauthorized");
+      err.status = 401;
+      next(err);
+    }
+  } catch (error) {
+    next(error);
+  }
+};
