@@ -44,3 +44,24 @@ exports.signin = async (req, res, next) => {
   const token = jwt.sign(JSON.stringify(payload), JWT_SECRET);
   res.json({ token });
 };
+
+exports.tripCreate = async (req, res, next) => {
+  try {
+    if (req.user.id) {
+      if (req.file) {
+        req.body.image = `${req.protocol ? "https" : "http"}://${req.get(
+          "host"
+        )}/media/${req.file.filename}`;
+      }
+      req.body.userId = req.user.id;
+      const newTrip = await Trip.create(req.body);
+      res.status(201).json(newTrip);
+    } else {
+      const err = new Error("Unauthorized");
+      err.status = 401;
+      next(err);
+    }
+  } catch (error) {
+    next(error);
+  }
+};
