@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { signup, signin, tripCreate } = require("../controllers/userController");
 const passport = require("passport");
-const upload = require("../middleware/multer");
+const upload = require("../middleWare/multer");
 
 router.post("/signup", signup);
 router.post(

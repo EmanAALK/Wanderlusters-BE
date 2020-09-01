@@ -6,7 +6,7 @@ const {
   tripDelete,
   fetchTrip,
 } = require("../controllers/tripController");
-const upload = require("../middleware/multer");
+const upload = require("../middleWare/multer");
 const router = express.Router();
 
 router.param("tripId", async (req, res, next, tripId) => {
