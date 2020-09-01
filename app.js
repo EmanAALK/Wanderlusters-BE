@@ -5,7 +5,7 @@ const path = require("path");
 const passport = require("passport");
 
 // Strategies
-const { localStrategy, jwtStrategy } = require("./middleWare/passport");
+const { localStrategy, jwtStrategy } = require("./middleware/passport");
 
 // DB
 const db = require("./db");

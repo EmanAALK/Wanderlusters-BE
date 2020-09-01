@@ -6,7 +6,7 @@ const {
   profileUpdate,
 } = require("../controllers/profileController");
 
-const upload = require("../middleWare/multer");
+const upload = require("../middleware/multer");
 const passport = require("passport");
 
 const router = express.Router();
