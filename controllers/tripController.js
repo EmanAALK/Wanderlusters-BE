@@ -3,7 +3,7 @@ const { Trip, User } = require("../db/models");
 exports.fetchTrip = async (tripId, next) => {
   try {
     const trip = await Trip.findByPk(tripId, {
-      include: { model: User, as: "user", attributes: ["userId"] },
+      include: { model: User, as: "user", attributes: ["id"] },
     });
     return trip;
   } catch (error) {
@@ -29,11 +29,11 @@ exports.tripList = async (req, res, next) => {
 
 exports.tripUpdate = async (req, res, next) => {
   try {
-    if (req.user && req.user.id === req.trip.profile.userId) {
+    if (req.user.id === req.trip.userId) {
       if (req.file) {
-        req.body.image = `${req.protocol}}://${req.get("host")}/media/${
-          req.file.filename
-        }`;
+        req.body.image = `${process.env.PORT ? "https" : "http"}://${req.get(
+          "host"
+        )}/media/${req.file.filename}`;
       }
 
       await req.trip.update(req.body);
@@ -50,7 +50,7 @@ exports.tripUpdate = async (req, res, next) => {
 
 exports.tripDelete = async (req, res, next) => {
   try {
-    if (req.user.id === req.trip.profile.userId) {
+    if (req.user.id === req.trips.userId) {
       await req.trip.destroy();
       res.status(204).end();
     } else {
