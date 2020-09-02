@@ -50,7 +50,7 @@ exports.tripUpdate = async (req, res, next) => {
 
 exports.tripDelete = async (req, res, next) => {
   try {
-    if (req.user.id === req.trips.userId) {
+    if (req.user.id === req.trip.userId) {
       await req.trip.destroy();
       res.status(204).end();
     } else {
