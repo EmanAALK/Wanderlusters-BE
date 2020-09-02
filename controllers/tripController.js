@@ -13,6 +13,7 @@ exports.fetchTrip = async (tripId, next) => {
 
 exports.tripList = async (req, res, next) => {
   try {
+    // REVIEW: why is it called _trips not trips?
     const _trips = await Trip.findAll({
       attributes: { exclude: ["createdAt", "updatedAt"] },
       include: {
@@ -29,6 +30,7 @@ exports.tripList = async (req, res, next) => {
 
 exports.tripUpdate = async (req, res, next) => {
   try {
+    // REVIEW: You' don't need to check for `req.user`, if it doesn't exist jwt strategy will throw a 401 and it will never reach this controller
     if (req.user && req.user.id === req.trip.profile.userId) {
       if (req.file) {
         req.body.image = `${req.protocol}}://${req.get("host")}/media/${

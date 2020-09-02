@@ -10,6 +10,7 @@ router.post(
   passport.authenticate("local", { session: false }),
   signin
 );
+// REVIEW: You don't need to pass the userId in the URL. the user is already passed through the jwt strategy. So trip create should be moved to the trip routes
 router.post(
   "/:userId/trips",
   passport.authenticate("jwt", { session: false }),

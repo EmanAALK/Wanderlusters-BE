@@ -47,6 +47,7 @@ exports.signin = async (req, res, next) => {
 
 exports.tripCreate = async (req, res, next) => {
   try {
+    // REVIEW: You don't need this condition. Every user has an ID and if req.user doesn't exist jwt strategy will not allow it to reach here
     if (req.user.id) {
       if (req.file) {
         req.body.image = `${req.protocol ? "https" : "http"}://${req.get(
