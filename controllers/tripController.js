@@ -5,6 +5,7 @@ exports.fetchTrip = async (tripId, next) => {
     const trip = await Trip.findByPk(tripId, {
       include: { model: User, as: "user", attributes: ["id"] },
     });
+
     return trip;
   } catch (error) {
     next(error);
