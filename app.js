@@ -47,7 +47,7 @@ app.use((err, req, res, next) => {
 
 const run = async () => {
   try {
-    await db.sync({ alter: true });
+    await db.sync({ force: true });
     /*force: true*/
     /*alter: true : we do it only once*/
   } catch (error) {
