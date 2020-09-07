@@ -17,7 +17,7 @@ exports.profileList = async (req, res, next) => {
         {
           model: User,
           as: "user",
-          attributes: ["username"],
+          attributes: ["username", "firstName", "lastName"],
         },
       ],
     });
