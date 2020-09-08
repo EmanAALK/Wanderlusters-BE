@@ -49,9 +49,7 @@ exports.tripCreate = async (req, res, next) => {
   try {
     if (req.user.id) {
       if (req.file) {
-        req.body.image = `${req.protocol ? "https" : "http"}://${req.get(
-          "host"
-        )}/media/${req.file.filename}`;
+        req.body.image = `http://${req.get("host")}/media/${req.file.filename}`;
       }
       req.body.userId = req.user.id;
       const newTrip = await Trip.create(req.body);

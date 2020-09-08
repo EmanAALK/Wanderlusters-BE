@@ -31,9 +31,7 @@ exports.profileUpdate = async (req, res, next) => {
   try {
     if (req.user.id === req.profile.userId) {
       if (req.file) {
-        req.body.image = `${process.env.PORT ? "https" : "http"}://${req.get(
-          "host"
-        )}/media/${req.file.filename}`;
+        req.body.image = `http://${req.get("host")}/media/${req.file.filename}`;
       }
       await req.profile.update(req.body);
       res.status(204).end();
