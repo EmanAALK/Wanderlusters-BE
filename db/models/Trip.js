@@ -19,6 +19,10 @@ Trip.init(
     image: {
       type: DataTypes.STRING,
     },
+    favorite: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
   },
 
   {
